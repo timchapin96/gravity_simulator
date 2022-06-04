@@ -8,7 +8,7 @@ big_g = 15
 $real_big_g = 8000
 $asteroid_radius = 25
 $planet1_radius = 150
-jump_strength = 3
+jump_strength = 1
 
 $my_text = Text.new("test")
 
