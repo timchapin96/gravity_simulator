@@ -1,5 +1,6 @@
 require 'ruby2d'
 require '../asteroid_game/components/asteroid_class'
+require '../asteroid_game/methods/move.rb'
 
 set title: 'Angry Birds' , width: 1920, height: 1000, resizable: true
 
@@ -44,12 +45,6 @@ end
 def default_position(small_circle, big_circle)
   small_circle.x = Math.cos(degree_to_radian(-90)) * (big_circle.radius + small_circle.radius) + big_circle.x  
   small_circle.y = Math.sin(degree_to_radian(-90)) * (big_circle.radius + small_circle.radius) + big_circle.y
-end
-
-# Take values from key_held and move small circle
-def move (small_circle, big_circle, degree)
-  small_circle.x = Math.cos(degree_to_radian(degree)) * (small_circle.radius + big_circle.radius) + big_circle.x
-  small_circle.y = Math.sin(degree_to_radian(degree)) * (small_circle.radius + big_circle.radius) + big_circle.y
 end
 
 def apply_gravity(small_circle, planet, big_g)

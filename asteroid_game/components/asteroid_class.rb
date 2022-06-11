@@ -13,28 +13,33 @@ class Asteroid
     )
     @speed = 1
 
+    # Initialize x and y velocity
     @y_velocity = 0
     @x_velocity = 0
 
+    # Max and min velocity to prevent flying too far away from planet or having negative velocity
     @max_y_velocity = 5
     @min_y_velocity = -5
-
     @max_x_velocity = 5
     @min_x_velocity = -5
   end
 
+  # Attr_reader to make values readable outside class
   attr_reader :body, :speed, :y_velocity, :x_velocity
 
+  # Increase y velocity method
   def increase_y_velocity(new_y)
     @y_velocity += new_y
+    # Stop velocity from going above max velocity or below min velocity
     if @y_velocity > @max_y_velocity
       @y_velocity = @max_y_velocity
     elsif @y_velocity < @min_y_velocity
       @y_velocity = @min_y_velocity
     end
   end
-
+  # Increase x velocity method
   def increase_x_velocity(new_x)
+    # Stop velocity from going above max velocity or below min velocity
     @x_velocity += new_x
     if @x_velocity > @max_x_velocity
       @x_velocity = @max_x_velocity
