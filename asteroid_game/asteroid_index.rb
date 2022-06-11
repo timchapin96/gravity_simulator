@@ -1,83 +1,34 @@
 require 'ruby2d'
-degrees = -90
-
+require '../asteroid_game/components/asteroid_class'
 
 set title: 'Angry Birds' , width: 1920, height: 1000, resizable: true
 
+#Declare variables
+degrees = -90
 big_g = 15
 $real_big_g = 8000
-$asteroid_radius = 25
-$planet1_radius = 150
-jump_strength = 1
-
+asteroid_radius = 25
+planet1_radius = 150
+jump_strength = 4
 $my_text = Text.new("test")
 
 Planet1 = Circle.new(
   x: Window.width / 2, y: Window.height / 2,
-  radius: $planet1_radius,
+  radius: planet1_radius,
   sectors: 120,
   color: 'blue',
   z: 1
 )
 Planet1_gravity_field = Circle.new(
   x: Window.width / 2, y: Window.height / 2,
-  radius: $planet1_radius + $asteroid_radius + 1,
+  radius: planet1_radius + asteroid_radius + 1,
   sectors: 120,
   color: 'blue',
   z: 0,
   opacity: 0.2
 )
 
-# Create Little circle
-# MAKE THIS CLASS NOT SHIT
-class Asteroid
-  def initialize
-    @body = Circle.new(
-      x: Window.width / 2, y: Window.height / 2,
-      radius: $asteroid_radius,
-      sectors: 60,
-      color: 'red',
-      z: 2,
-      opacity: 0.5
-    )
-    @speed = 1
-
-    @y_velocity = 0
-    @x_velocity = 0
-
-    @max_y_velocity = 5
-    @min_y_velocity = -5
-
-    @max_x_velocity = 5
-    @min_x_velocity = -5
-  end
-
-  attr_reader :body, :speed, :y_velocity, :x_velocity
-
-  def increase_y_velocity(new_y)
-    @y_velocity += new_y
-    if @y_velocity > @max_y_velocity
-      @y_velocity = @max_y_velocity
-    elsif @y_velocity < @min_y_velocity
-      @y_velocity = @min_y_velocity
-    end
-  end
-
-  def increase_x_velocity(new_x)
-    @x_velocity += new_x
-    if @x_velocity > @max_x_velocity
-      @x_velocity = @max_x_velocity
-    elsif @x_velocity < @min_x_velocity
-      @x_velocity = @min_x_velocity
-    end
-  end
-
-  def kill_velocity
-    @y_velocity = 0
-    @x_velocity = 0
-  end
-end
-small_circle1 = Asteroid.new
+small_circle1 = Asteroid.new(asteroid_radius)
 
 # Degree to Radian method
 def degree_to_radian(deg)
