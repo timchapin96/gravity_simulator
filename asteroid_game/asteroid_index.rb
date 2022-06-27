@@ -1,10 +1,11 @@
 require 'ruby2d'
 require '../asteroid_game/components/asteroid_class'
 require '../asteroid_game/methods/move.rb'
+require '../asteroid_game/methods/degree_to_radian.rb'
 
 set title: 'Angry Birds' , width: 1920, height: 1000, resizable: true
 
-#Declare variables
+# Declare variables
 degrees = -90
 big_g = 15
 $real_big_g = 8000
@@ -13,28 +14,31 @@ planet1_radius = 150
 jump_strength = 4
 $my_text = Text.new("test")
 
+background = Image.new(
+  '../asteroid_game/images/space_background.jpeg',
+  width: 1920, height: 1000, resizable: true,
+  z: 0
+)
+
 Planet1 = Circle.new(
   x: Window.width / 2, y: Window.height / 2,
   radius: planet1_radius,
   sectors: 120,
   color: 'blue',
-  z: 1
+  z: 2,
+  space_background: background
 )
 Planet1_gravity_field = Circle.new(
   x: Window.width / 2, y: Window.height / 2,
   radius: planet1_radius + asteroid_radius + 1,
   sectors: 120,
   color: 'blue',
-  z: 0,
+  z: 1,
   opacity: 0.2
 )
 
 small_circle1 = Asteroid.new(asteroid_radius)
 
-# Degree to Radian method
-def degree_to_radian(deg)
-  (deg * Math::PI) / 180
-end
 
 # Gets current angle of small circle
 def degrees_between_coordinates(x_1, y_1, x_2, y_2)

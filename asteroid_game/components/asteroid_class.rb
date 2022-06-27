@@ -8,7 +8,7 @@ class Asteroid
       y: Window.height / 2,
       sectors: 60,
       color: 'red',
-      z: 2,
+      z: 3,
       opacity: 0.5
     )
     @speed = 1
