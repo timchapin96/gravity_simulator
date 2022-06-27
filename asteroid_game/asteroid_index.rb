@@ -2,6 +2,7 @@ require 'ruby2d'
 require '../asteroid_game/components/asteroid_class'
 require '../asteroid_game/methods/move.rb'
 require '../asteroid_game/methods/degree_to_radian.rb'
+require '../asteroid_game/methods/degrees_between_coordinates.rb'
 
 set title: 'Angry Birds' , width: 1920, height: 1000, resizable: true
 
@@ -40,10 +41,7 @@ Planet1_gravity_field = Circle.new(
 small_circle1 = Asteroid.new(asteroid_radius)
 
 
-# Gets current angle of small circle
-def degrees_between_coordinates(x_1, y_1, x_2, y_2)
-  Math.atan2(y_2 - y_1, x_2 - x_1) * (180 / Math::PI)
-end
+
 
 # Set Asteroid default location cleato surface of Planet
 def default_position(small_circle, big_circle)
