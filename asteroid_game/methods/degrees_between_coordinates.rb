@@ -1,3 +1,9 @@
+require 'ruby2d'
+require '../asteroid_game/components/asteroid_class'
+require '../asteroid_game/methods/move.rb'
+require '../asteroid_game/methods/degree_to_radian.rb'
+require '../asteroid_game/methods/apply_gravity.rb'
+
 # Gets current angle of small circle
 
 

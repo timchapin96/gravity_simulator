@@ -9,11 +9,10 @@ set title: 'Angry Birds' , width: 1920, height: 1000, resizable: true
 # Declare variables
 degrees = -90
 big_g = 15
-$real_big_g = 8000
+real_big_g = 8000
 asteroid_radius = 25
 planet1_radius = 150
 jump_strength = 4
-$my_text = Text.new("test")
 
 background = Image.new(
   '../asteroid_game/images/space_background.jpeg',
@@ -40,37 +39,10 @@ Planet1_gravity_field = Circle.new(
 
 small_circle1 = Asteroid.new(asteroid_radius)
 
-
-
-
 # Set Asteroid default location cleato surface of Planet
 def default_position(small_circle, big_circle)
-  small_circle.x = Math.cos(degree_to_radian(-90)) * (big_circle.radius + small_circle.radius) + big_circle.x  
+  small_circle.x = Math.cos(degree_to_radian(-90)) * (big_circle.radius + small_circle.radius) + big_circle.x
   small_circle.y = Math.sin(degree_to_radian(-90)) * (big_circle.radius + small_circle.radius) + big_circle.y
-end
-
-def apply_gravity(small_circle, planet, big_g)
-  # Calculate distance from small_circle to get Gravity strength
-
-  # I think we need to calculate "gravity" as one value and then get a y and x component out of it using the the cos sin stuff
-
-  distance_y = (planet.y - small_circle.body.y)
-  distance_x = (planet.x - small_circle.body.x)
-
-  degrees = degrees_between_coordinates(planet.x, planet.y, small_circle.body.x, small_circle.body.y)
-
-  # Calculate gravity using the newtons formula
-  gravity_force = -1 * $real_big_g / ((distance_y * distance_y + distance_x * distance_x )) 
-  cosx = Math.cos(degree_to_radian(degrees))
-  siny = Math.sin(degree_to_radian(degrees))
-  gravity_force_x = cosx * gravity_force
-  gravity_force_y = siny * gravity_force
-
-  $my_text.remove
-  $my_text = Text.new("Grav_F#{gravity_force}, x_ratio:#{cosx}, y_ratio:#{siny}, x_F:#{gravity_force_x}, y_F:#{gravity_force_y}")
-
-  small_circle.increase_y_velocity(gravity_force_y)
-  small_circle.increase_x_velocity(gravity_force_x)
 end
 
 # Left and right arrow key to move around circle
@@ -103,7 +75,7 @@ update do
 
   # we should only apply changes in velocity due to gravity if we are NOT on the planet
   if !Planet1_gravity_field.contains? small_circle1.body.x,small_circle1.body.y
-    apply_gravity(small_circle1 ,Planet1, big_g)
+    apply_gravity(small_circle1 ,Planet1, big_g, real_big_g)
   end
 
   # Caclulate the new position of the object based on it's current velocity
