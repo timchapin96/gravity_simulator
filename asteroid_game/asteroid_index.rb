@@ -3,6 +3,7 @@ require '../asteroid_game/components/asteroid_class'
 require '../asteroid_game/methods/move.rb'
 require '../asteroid_game/methods/degree_to_radian.rb'
 require '../asteroid_game/methods/degrees_between_coordinates.rb'
+require '../asteroid_game/methods/default_position.rb'
 
 set title: 'Angry Birds' , width: 1920, height: 1000, resizable: true
 
@@ -39,11 +40,6 @@ Planet1_gravity_field = Circle.new(
 
 small_circle1 = Asteroid.new(asteroid_radius)
 
-# Set Asteroid default location cleato surface of Planet
-def default_position(small_circle, big_circle)
-  small_circle.x = Math.cos(degree_to_radian(-90)) * (big_circle.radius + small_circle.radius) + big_circle.x
-  small_circle.y = Math.sin(degree_to_radian(-90)) * (big_circle.radius + small_circle.radius) + big_circle.y
-end
 
 # Left and right arrow key to move around circle
 on :key_held do |event|
