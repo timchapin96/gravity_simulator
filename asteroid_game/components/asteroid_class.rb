@@ -12,6 +12,7 @@ class Asteroid
       opacity: 0.5
     )
     @speed = 1
+    @max_speed = 1
 
     # Initialize x and y velocity
     @y_velocity = 0
