@@ -43,14 +43,22 @@ small_circle1 = Asteroid.new(asteroid_radius)
 
 # Left and right arrow key to move around circle
 on :key_held do |event|
-  # A key is being held down
-  if (Planet1_gravity_field.contains? small_circle1.body.x,small_circle1.body.y) && (event.key == 'left')
+  # If asteroid leaves gravity field call move_in_space method
+  if !(Planet1_gravity_field.contains? small_circle1.body.x, small_circle1.body.y) && (event.key == 'left')
+    degrees -= small_circle1.speed
+    move_in_space(small_circle1.body, Planet1, degrees, $new_x_position, $new_y_position)
+  elsif !(Planet1_gravity_field.contains? small_circle1.body.x, small_circle1.body.y) && (event.key == 'right')
+    degrees += small_circle1.speed
+    move_in_space(small_circle1.body, Planet1, degrees, $new_x_position, $new_y_position)
+  # If asteroid is in gravity field call move method
+  elsif event.key == 'left'
     degrees -= small_circle1.speed
     move(small_circle1.body, Planet1, degrees)
-  elsif (Planet1_gravity_field.contains? small_circle1.body.x,small_circle1.body.y) && (event.key == 'right')
+  elsif event.key == 'right'
     degrees += small_circle1.speed
     move(small_circle1.body, Planet1, degrees)
   end
+  puts(small_circle1.body.x)
 end
 
 on :key_down do |event|
